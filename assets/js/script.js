@@ -65,12 +65,7 @@ function mostrarFormularioIn() {
             productoExistente.descripcion = descripcion;
         } else {
             // Si el producto no existe, agregarlo como un nuevo producto
-            const nuevoProducto = {
-                sku: sku,
-                descripcion: descripcion,
-                cantidad: cantidad,
-                // Rotacion: rotacion,
-            };
+            const nuevoProducto = new Producto(sku, descripcion, cantidad);
             listaProductos.push(nuevoProducto);
         }
 
