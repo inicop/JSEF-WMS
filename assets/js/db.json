@@ -1,0 +1,92 @@
+[
+    {
+        "sku": 1,
+        "descripcion": "Taladro inalámbrico 18v Bauker",
+        "cantidad": 1000
+    },
+    {
+        "sku": 2,
+        "descripcion": "Ladrillo de vidrio",
+        "cantidad": 1100
+    },
+    {
+        "sku": 3,
+        "descripcion": "Sierra circular UBERMAN",
+        "cantidad": 1200
+    },
+    {
+        "sku": 4,
+        "descripcion": "Set de destornilladores",
+        "cantidad": 500
+    },
+    {
+        "sku": 5,
+        "descripcion": "Pinza",
+        "cantidad": 80
+    },
+    {
+        "sku": 6,
+        "descripcion": "Martillo",
+        "cantidad": 106
+    },
+    {
+        "sku": 7,
+        "descripcion": "Llave francesa",
+        "cantidad": 198
+    },
+    {
+        "sku": 8,
+        "descripcion": "Lijadora Orbital",
+        "cantidad": 133
+    },
+    {
+        "sku": 9,
+        "descripcion": "Caja de herramientas",
+        "cantidad": 1063
+    },
+    {
+        "sku": 10,
+        "descripcion": "Soldadora inverter",
+        "cantidad": 10
+    },
+    {
+        "sku": 11,
+        "descripcion": "Grapadora manual 3 en 1",
+        "cantidad": 223
+    },
+    {
+        "sku": 12,
+        "descripcion": "Pinza",
+        "cantidad": 106
+    },
+    {
+        "sku": 13,
+        "descripcion": "Juego de dados 94 piezas",
+        "cantidad": 15
+    },
+    {
+        "sku": 14,
+        "descripcion": "Hidrolavadora eléctrica Bauker",
+        "cantidad": 106
+    },
+    {
+        "sku": 15,
+        "descripcion": "Cinta teflón",
+        "cantidad": 220
+    },
+    {
+        "sku": 16,
+        "descripcion": "Motosierra ",
+        "cantidad": 20
+    },
+    {
+        "sku": 17,
+        "descripcion": "Caja organizadora 18 compartimientos",
+        "cantidad": 26
+    },
+    {
+        "sku": 18,
+        "descripcion": "Desmalezadora a nafta",
+        "cantidad": 132
+    }
+]

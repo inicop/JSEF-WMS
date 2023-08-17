@@ -1,6 +1,6 @@
 
 function mostrarFormularioIn() {
-    const divPrincipal = document.querySelector("#contenedorForm");
+    const divPrincipal = document.querySelector("#contenedor");
     const formularioHTML = `
       <form id="nuevoIngForm" name=""Formulario de Ingreso">
         <h3>Formulario de Ingreso</h3>
@@ -25,11 +25,11 @@ function mostrarFormularioIn() {
 
         // Verificar si el SKU ya existe en el web storage
         const listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
-        const productoExistente = listaProductos.find(producto => producto.SKU === parseInt(skuVal));
+        const productoExistente = listaProductos.find(producto => producto.sku === parseInt(skuVal));
 
         if (productoExistente) {
             // Si el SKU ya existe, autocompletar la descripción y mostrar la cantidad existente
-            descripcionIn.value = productoExistente.Descripcion;
+            descripcionIn.value = productoExistente.descripcion;
 
             cantidadIn.focus();
         }
@@ -44,31 +44,31 @@ function mostrarFormularioIn() {
         const cantidad = parseInt(document.getElementById('cantidad').value);
 
         // Validar que la cantidad sea mayor o igual a cero
-        if (cantidad < 1 ){
+        if (cantidad < 1) {
             swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'La cantidad ingresada debe ser mayor a cero ',
                 timer: 1500,
-                
-              })
+
+            })
             return;
         }
 
         // Cargar lista de productos desde el localStorage o crear un array vacío
         let listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
-        const productoExistente = listaProductos.find(producto => producto.SKU === sku);
+        const productoExistente = listaProductos.find(producto => producto.sku === sku);
 
         if (productoExistente) {
             // Si el producto ya existe, sumar la cantidad ingresada a la cantidad existente
-            productoExistente.Cantidad += cantidad;
-            productoExistente.Descripcion = descripcion;
+            productoExistente.cantidad += cantidad;
+            productoExistente.descripcion = descripcion;
         } else {
             // Si el producto no existe, agregarlo como un nuevo producto
             const nuevoProducto = {
-                SKU: sku,
-                Descripcion: descripcion,
-                Cantidad: cantidad,
+                sku: sku,
+                descripcion: descripcion,
+                cantidad: cantidad,
                 // Rotacion: rotacion,
             };
             listaProductos.push(nuevoProducto);
@@ -83,8 +83,8 @@ function mostrarFormularioIn() {
         Toastify({
             text: "Producto ingresado correctamente",
             duration: 3000,
-            gravity: "bottom", 
-            position: "center", 
+            gravity: "bottom",
+            position: "center",
             style: {
                 background: "linear-gradient(to right, #00b09b, #96c93d)",
             },
@@ -93,7 +93,7 @@ function mostrarFormularioIn() {
 }
 
 function mostrarFormularioDesp() {
-    const divPrincipal = document.querySelector("#contenedorForm");
+    const divPrincipal = document.querySelector("#contenedor");
     const formularioHTML = `
       <form id="nuevoDespForm">
       <h3>Formulario de Despacho</h3>
@@ -118,11 +118,11 @@ function mostrarFormularioDesp() {
 
         // Verificar si el SKU ya existe en el web storage
         const listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
-        const productoExistente = listaProductos.find(producto => producto.SKU === parseInt(skuVal));
+        const productoExistente = listaProductos.find(producto => producto.sku === parseInt(skuVal));
 
         if (productoExistente) {
             // Si el SKU ya existe, autocompletar la descripción y mostrar la cantidad existente
-            descripcionOut.value = productoExistente.Descripcion;
+            descripcionOut.value = productoExistente.descripcion;
             cantidadOut.focus();
         } else {
             alert("Código de producto incorrecto, por favor ingrese uno válido");
@@ -144,12 +144,12 @@ function mostrarFormularioDesp() {
 
         // Cargar lista de productos desde el localStorage o crear un array vacío
         let listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
-        const productoExistente = listaProductos.find(producto => producto.SKU === sku);
+        const productoExistente = listaProductos.find(producto => producto.sku === sku);
 
-        if (productoExistente && productoExistente.Cantidad >= cantidad && cantidad > 0) {
+        if (productoExistente && productoExistente.cantidad >= cantidad && cantidad > 0) {
             // Si el producto ya existe, sumar la cantidad ingresada a la cantidad existente
-            productoExistente.Cantidad -= cantidad;
-            productoExistente.Descripcion = descripcion;
+            productoExistente.cantidad -= cantidad;
+            productoExistente.descripcion = descripcion;
 
             // Guardar lista de productos actualizada en el localStorage
             localStorage.setItem('listaProductos', JSON.stringify(listaProductos));
@@ -170,9 +170,9 @@ function mostrarFormularioDesp() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Saldo insuficiente, por favor ingrese una cantidad menor o igual a: ' + productoExistente.Cantidad,
-                
-              })
+                text: 'Saldo insuficiente, por favor ingrese una cantidad menor o igual a: ' + productoExistente.cantidad,
+
+            })
 
             cantidadOut.focus();
             cantidadOut.value = "";
@@ -181,7 +181,7 @@ function mostrarFormularioDesp() {
 }
 
 function mostrarFormularioStock() {
-    const divPrincipal = document.querySelector("#contenedorForm");
+    const divPrincipal = document.querySelector("#contenedor");
     const formularioHTML = `
       <input type="text" id="buscador" placeholder="Ingrese los datos del producto">
       <select id="filtro">
@@ -204,11 +204,11 @@ function mostrarFormularioStock() {
         // Filtrar los productos según el criterio seleccionado
         const productosFiltrados = listaProductos.filter(producto => {
             if (criterio === "sku") {
-                return producto.SKU.toString().includes(valor);
+                return producto.sku.toString().includes(valor);
             } else if (criterio === "descripcion") {
-                return producto.Descripcion.toLowerCase().includes(valor.toLowerCase());
+                return producto.descripcion.toLowerCase().includes(valor.toLowerCase());
             } else if (criterio === "cantidad") {
-                return producto.Cantidad.toString().includes(valor);
+                return producto.cantidad.toString().includes(valor);
             }
         });
         // Generar el HTML para mostrar los productos filtrados
@@ -217,13 +217,15 @@ function mostrarFormularioStock() {
         htmlResult += "<tr><th>SKU</th><th>Descripción</th><th>Cantidad</th></tr>";
 
         productosFiltrados.forEach(producto => {
-            htmlResult += `<tr><td>${producto.SKU}</td><td>${producto.Descripcion}</td><td>${producto.Cantidad}</td></tr>`;
+            htmlResult += `<tr><td>${producto.sku}</td><td>${producto.descripcion}</td><td>${producto.cantidad}</td></tr>`;
         });
 
         htmlResult += "</table>";
         // Mostrar los resultados en el div con id="resultado"
         resultadoDiv.innerHTML = htmlResult;
     }
+
+    mostrarProductosFiltrados("sku", "");
     // Agregar evento de búsqueda cuando se modifica el valor del buscador o el filtro
     buscador.addEventListener("input", () => {
         const criterio = filtro.value;
@@ -236,5 +238,50 @@ function mostrarFormularioStock() {
         const valor = buscador.value;
         mostrarProductosFiltrados(criterio, valor);
     });
+}
 
+function mostrarDashboard() {
+
+
+    const listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
+    const qProdStock = listaProductos.length;
+
+    let qUnidStock = 0;
+    listaProductos.forEach(producto => {
+        qUnidStock += producto.cantidad;
+    });
+
+
+    //    const listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
+    //  qprodStock = listaProductos.lenght;
+    //  console.log(listaProductos);
+
+    const divPrincipal = document.querySelector("#contenedor");
+    const formularioHTML = `
+        <section id="dashboard">
+            <div id="cuentaProducto"> <h3>Cantidad artículos</h3> <h2>${qProdStock}</h2></div>
+            <div id="cuentaUnidades"> <h3>Cantidad de Unidades</h3> <h2>${qUnidStock}</h2></div>
+        </section>
+  `;
+    divPrincipal.innerHTML = formularioHTML;
+
+
+
+}
+
+
+
+
+
+async function cargarYGuardarDatos() {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data) {
+            localStorage.setItem('listaProductos', JSON.stringify(data));
+        }
+    } catch (error) {
+        console.error('Error loading local JSON:', error);
+    }
 }
