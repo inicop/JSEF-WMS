@@ -125,7 +125,11 @@ function mostrarFormularioDesp() {
             descripcionOut.value = productoExistente.descripcion;
             cantidadOut.focus();
         } else {
-            alert("Código de producto incorrecto, por favor ingrese uno válido");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No podemos encontrar el producto ingresado, por favor ingresa un código existente: ',
+            })
             skuOut.value = "";
         }
 

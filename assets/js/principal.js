@@ -1,6 +1,6 @@
 const url = './assets/js/db.json';
 
-cargarYGuardarDatos();
+
 
 const btnInicio = document.getElementById('btnInicio');
 btnInicio.addEventListener('click', mostrarDashboard);
@@ -16,5 +16,10 @@ btnStock.addEventListener('click', mostrarFormularioStock);
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
 
+    cargarYGuardarDatos(); 
+    mostrarDashboard();
+   
+})
 
