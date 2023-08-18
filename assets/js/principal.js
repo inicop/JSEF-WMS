@@ -18,8 +18,8 @@ btnStock.addEventListener('click', mostrarFormularioStock);
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    cargarYGuardarDatos(); 
+    cargarYGuardarDatos();
     mostrarDashboard();
-   
+
 })
 

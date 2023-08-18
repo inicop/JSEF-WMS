@@ -3,9 +3,7 @@ body {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 20px;
     background-image: linear-gradient(to right, rgba(44, 44, 44, 0.5), rgba(54, 54, 54, 0.5019607843)), url("https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80");
-
-
-
+    background-size: cover;
 }
 
 button {
@@ -30,8 +28,6 @@ form {
     background-color: #edf3ee;
     width: 800px;
 
-
-
 }
 
 form label {
@@ -40,8 +36,6 @@ form label {
     font-size: 14px;
     margin-bottom: 5px;
 }
-
-
 
 
 #botones {
@@ -145,39 +139,6 @@ body {
         background-color: #ddd;
     }
 
-    /* #dashboard {
-
-    margin-top: 20px;
-    justify-content: space-around;
-    width: 100%;
-    height: 200px;;
-    border-radius: 5px;
-   
- 
-    display: flex;
-
-    align-items: center;
-}
-
-#cuentaProducto, #cuentaUnidades  {
-    
-    background-color: #97d39a;
-    border-radius: 5px;
-    width: 200px;
-    padding: 10px;
-    height: 150px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-color: #333;
-    border: white 8px outset;
-
-    
-} */
-
-
-    /* ====== */
 
     #dashboard {
         display: flex;
@@ -216,21 +177,6 @@ body {
         font-weight: bold;
         color: #2ecc71;
     }
-
-
-    /* ======= */
-    /* h3{
-    font-weight:bolder;
-    font-size:xx-large;
-    font-size: 20px;
-    color:olor: #3c3939;
-    }
-    
-    h2{
-        color: #3c3939;
-    } */
-
-
 
 
     body {

@@ -30,7 +30,6 @@ function mostrarFormularioIn() {
         if (productoExistente) {
             // Si el SKU ya existe, autocompletar la descripción y mostrar la cantidad existente
             descripcionIn.value = productoExistente.descripcion;
-
             cantidadIn.focus();
         }
     });
@@ -127,9 +126,6 @@ function mostrarFormularioDesp() {
             })
             skuOut.value = "";
         }
-
-
-
     });
 
     nuevoDespForm.addEventListener('submit', (event) => {
@@ -145,11 +141,16 @@ function mostrarFormularioDesp() {
         let listaProductos = JSON.parse(localStorage.getItem('listaProductos')) || [];
         const productoExistente = listaProductos.find(producto => producto.sku === sku);
 
-        if (productoExistente && productoExistente.cantidad >= cantidad && cantidad > 0) {
-            // Si el producto ya existe, sumar la cantidad ingresada a la cantidad existente
+        if (productoExistente.cantidad >= cantidad && cantidad > 0) {
+
             productoExistente.cantidad -= cantidad;
             productoExistente.descripcion = descripcion;
 
+
+            if (productoExistente.cantidad == 0) {
+                const indiceDelProducto = listaProductos.findIndex(producto => productoExistente.sku === sku);
+                listaProductos.splice(indiceDelProducto, 1);
+            }
             // Guardar lista de productos actualizada en el localStorage
             localStorage.setItem('listaProductos', JSON.stringify(listaProductos));
             nuevoDespForm.reset();
@@ -157,24 +158,40 @@ function mostrarFormularioDesp() {
             Toastify({
                 text: "Despacho Exitoso",
                 duration: 3000,
-                gravity: "bottom", // `top` or `bottom`
-                position: "center", // `left`, `center` or `right`
+                gravity: "bottom",
+                position: "center",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
             }).showToast();
-
         } else {
+            if (cantidad <= 0) {
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Saldo insuficiente, por favor ingrese una cantidad menor o igual a: ' + productoExistente.cantidad,
+                Toastify({
+                    text: "Debe ingresar una cantidad mayor a cero ",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                    },
+                }).showToast();
+                cantidadOut.focus();
+                cantidadOut.value = "";
+            } else {
+                Toastify({
+                    text: "La cantidad ingresada supera el saldo en stock: " + productoExistente.cantidad,
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                    },
+                }).showToast();
 
-            })
-
-            cantidadOut.focus();
-            cantidadOut.value = "";
+                cantidadOut.focus();
+                cantidadOut.value = "";
+            }
         }
     });
 }
